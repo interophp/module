@@ -1,0 +1,23 @@
+{
+    "name": "interophp/module",
+    "description": "InteroPHP Framework independent module library",
+    "homepage": "http://www.github.com/interophp/module",
+    "keywords": ["php", "module", "linkorb"],
+    "type": "library",
+    "authors": [
+        {
+            "name":     "LinkORB Engineering",
+            "email":    "engineering@linkorb.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "interophp/container": "~1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "InteroPhp\\Module\\": "src/"
+        }
+    },
+    "license": "MIT"
+}
