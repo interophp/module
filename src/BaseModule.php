@@ -8,19 +8,22 @@ abstract class BaseModule implements ModuleInterface
 {
     public function getName()
     {
-        // return classname excluding "Module" postfix
+        $name = get_class($this);
+        $pos = strrpos($name, '\\');
+        $name = substr($name, $pos + 1, -6);
+        return $name;
     }
     
     public function getNamespace()
     {
-        // this appears to not work. use late binding or reflection?
-        return __NAMESPACE__;
+        $class = get_class($this);
+        return substr($class, 0, strrpos($class, '\\'));
     }
     
     public function getPath()
     {
-        // this appears to not work. use late binding or reflection?
-        return __DIR__;
+        $reflectionObject = new \ReflectionObject($this);
+        return dirname($reflectionObject->getFileName());
     }
     
     public function register(ContainerInterface $container)
@@ -30,6 +33,6 @@ abstract class BaseModule implements ModuleInterface
     
     public function getResourcePath()
     {
-        return $this->getPath() . '/Resources';
+        return $this->getPath() . '/res';
     }
 }
